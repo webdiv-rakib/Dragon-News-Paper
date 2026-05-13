@@ -9,7 +9,7 @@ const Qzone = () => {
             <div>
                 <h1 className='font-semibold'>Q Zone</h1>
             </div>
-            <div>
+            <div className='grid grid-cols-1 gap-3'>
                 <img src={swimming} alt="" />
                 <img src={classroom} alt="" />
                 <img src={playground} alt="" />
