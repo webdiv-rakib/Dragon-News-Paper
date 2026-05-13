@@ -2,6 +2,7 @@ import React from 'react';
 import SocialLogin from './SocialLogin';
 import FindUs from './FindUs';
 import Qzone from './Qzone';
+import Advertise from './Advertise';
 
 const RightAside = () => {
     return (
@@ -15,6 +16,9 @@ const RightAside = () => {
             </div>
             <div>
                 <Qzone></Qzone>
+            </div>
+            <div>
+                <Advertise></Advertise>
             </div>
         </div>
     );
