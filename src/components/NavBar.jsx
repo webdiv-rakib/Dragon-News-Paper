@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
-import user from '../assets/user.png'
+import userIcon from '../assets/user.png'
+import { AuthContext } from '../provider/AuthProvider';
 
 const NavBar = () => {
+    const { user } = use(AuthContext);
     const links = <>
         <ul><NavLink to='/'>Home</NavLink></ul>
         <ul><NavLink to='/about'>About</NavLink></ul>
@@ -19,7 +21,7 @@ const NavBar = () => {
                 }
             </div>
             <div className='login-btn flex items-center gap-3'>
-                <img className='rounded-full' src={user} alt="" />
+                <img className='rounded-full' src={userIcon} alt="" />
                 <Link to='/auth/login' className='btn btn-primary rounded-none px-10'>Login</Link>
             </div>
         </div>
