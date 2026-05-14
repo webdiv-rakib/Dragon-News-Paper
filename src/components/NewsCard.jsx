@@ -47,7 +47,7 @@ const NewsCard = ({ news }) => {
                 </h1>
 
                 <img
-                    className="w-full h-[280px] object-cover rounded-lg"
+                    className="w-full h-70 object-cover rounded-lg"
                     src={image_url}
                     alt={title}
                 />

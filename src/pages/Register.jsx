@@ -1,0 +1,100 @@
+import React from 'react';
+import { Link } from 'react-router';
+
+const Register = () => {
+    return (
+        <div className=" pt-10 flex justify-center items-center bg-[#F3F3F3] font-poppins">
+            {/* Main Registration Card */}
+            <div className="bg-white w-full max-w-[600px] p-16 shadow-sm rounded-none">
+
+                {/* Title */}
+                <h2 className="text-3xl font-bold text-center text-[#403F3F] mb-10">
+                    Register your account
+                </h2>
+
+                {/* Decorative Divider */}
+                <div className="border-t border-[#E7E7E7] mb-10"></div>
+
+                <form>
+                    {/* Your Name Input */}
+                    <div className="mb-6">
+                        <label className="block font-semibold text-[#403F3F] mb-4">
+                            Your Name
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Enter your name"
+                            className="w-full bg-[#F3F3F3] border-none rounded-md p-5 focus:outline-none placeholder:text-[#9F9F9F]"
+                        />
+                    </div>
+
+                    {/* Photo URL Input (with design placeholder) */}
+                    <div className="mb-6">
+                        <label className="block text-xl font-semibold text-[#403F3F] mb-4">
+                            Photo URL
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Enter your password" // As seen in design
+                            className="w-full bg-[#F3F3F3] border-none rounded-md p-5 focus:outline-none placeholder:text-[#9F9F9F]"
+                        />
+                    </div>
+
+                    {/* Email Input */}
+                    <div className="mb-6">
+                        <label className="block text-xl font-semibold text-[#403F3F] mb-4">
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            placeholder="Enter your email address"
+                            className="w-full bg-[#F3F3F3] border-none rounded-md p-5 focus:outline-none placeholder:text-[#9F9F9F]"
+                        />
+                    </div>
+
+                    {/* Password Input */}
+                    <div className="mb-6">
+                        <label className="block text-xl font-semibold text-[#403F3F] mb-4">
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            placeholder="Enter your password"
+                            className="w-full bg-[#F3F3F3] border-none rounded-md p-5 focus:outline-none placeholder:text-[#9F9F9F]"
+                        />
+                    </div>
+
+                    {/* Terms & Conditions Checkbox */}
+                    <div className="flex items-center gap-3 mb-8">
+                        <input
+                            type="checkbox"
+                            className="w-5 h-5 accent-[#403F3F] border-[#CCCCCC] rounded"
+                        />
+                        <label className="text-lg font-normal text-[#706F6F]">
+                            Accept <span className="font-semibold">Term & Conditions</span>
+                        </label>
+                    </div>
+                    <p className="text-center mt-8 font-semibold text-[#706F6F]">
+                        Already Have An Account ?{" "}
+                        <Link to="/auth/login" className="text-[#F75B5F] hover:underline">
+                            Login
+                        </Link>
+                    </p>
+
+                    {/* Register Action Button */}
+                    <div className="mt-8">
+                        <button
+                            type="button"
+                            className="w-full bg-[#403F3F] text-white py-4 text-xl font-semibold rounded-md hover:bg-[#333232] transition-colors"
+                        >
+                            Register
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    );
+};
+
+export default Register;
