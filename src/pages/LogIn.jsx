@@ -2,10 +2,17 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const LogIn = () => {
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log(email, password)
+
+    }
     return (
         <div className="pt-10 flex justify-center items-center bg-[#F3F3F3] font-poppins">
             {/* Main Card Container */}
-            <div className="bg-white w-full max-w-[600px] p-16 shadow-sm rounded-none">
+            <div className="bg-white w-full max-w-150 p-16 shadow-sm rounded-none">
 
                 {/* Title */}
                 <h2 className="text-2xl font-bold text-center text-[#403F3F] mb-10">
@@ -15,13 +22,14 @@ const LogIn = () => {
                 {/* Decorative Divider */}
                 <div className="border-t border-[#E7E7E7] mb-10"></div>
 
-                <form>
+                <form onSubmit={handleLogin}>
                     {/* Email Input Group */}
                     <div className="mb-6">
                         <label className="block font-semibold text-[#403F3F] mb-4">
                             Email address
                         </label>
                         <input
+                            required
                             type="email"
                             name='email'
                             placeholder="Enter your email address"
@@ -35,6 +43,7 @@ const LogIn = () => {
                             Password
                         </label>
                         <input
+                            required
                             type="password"
                             name='password'
                             placeholder="Enter your password"
@@ -45,7 +54,7 @@ const LogIn = () => {
                     {/* Login Action */}
                     <div className="mt-8">
                         <button
-                            type="button"
+                            type="submit"
                             className="w-full bg-[#403F3F] text-white py-4 text-xl font-semibold rounded-md hover:bg-[#333232] transition-colors"
                         >
                             Login

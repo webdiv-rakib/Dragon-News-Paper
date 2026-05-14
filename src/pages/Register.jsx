@@ -2,10 +2,19 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const Register = () => {
+    const handleRegister = (e) => {
+        e.preventDefault();
+        const name = e.target.name.value;
+        const photo_url = e.target.photo.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log(name, photo_url, email, password);
+
+    }
     return (
         <div className=" pt-10 flex justify-center items-center bg-[#F3F3F3] font-poppins">
             {/* Main Registration Card */}
-            <div className="bg-white w-full max-w-[600px] p-16 shadow-sm rounded-none">
+            <div className="bg-white w-full max-w-150 p-16 shadow-sm rounded-none">
 
                 {/* Title */}
                 <h2 className="text-3xl font-bold text-center text-[#403F3F] mb-10">
@@ -15,14 +24,16 @@ const Register = () => {
                 {/* Decorative Divider */}
                 <div className="border-t border-[#E7E7E7] mb-10"></div>
 
-                <form>
+                <form onSubmit={handleRegister}>
                     {/* Your Name Input */}
                     <div className="mb-6">
                         <label className="block font-semibold text-[#403F3F] mb-4">
                             Your Name
                         </label>
                         <input
+                            name='name'
                             type="text"
+                            required
                             placeholder="Enter your name"
                             className="w-full bg-[#F3F3F3] border-none rounded-md p-5 focus:outline-none placeholder:text-[#9F9F9F]"
                         />
@@ -34,6 +45,8 @@ const Register = () => {
                             Photo URL
                         </label>
                         <input
+                            required
+                            name='photo'
                             type="text"
                             placeholder="Enter your password" // As seen in design
                             className="w-full bg-[#F3F3F3] border-none rounded-md p-5 focus:outline-none placeholder:text-[#9F9F9F]"
@@ -46,6 +59,8 @@ const Register = () => {
                             Email
                         </label>
                         <input
+                            required
+                            name='email'
                             type="email"
                             placeholder="Enter your email address"
                             className="w-full bg-[#F3F3F3] border-none rounded-md p-5 focus:outline-none placeholder:text-[#9F9F9F]"
@@ -58,6 +73,8 @@ const Register = () => {
                             Password
                         </label>
                         <input
+                            required
+                            name='password'
                             type="password"
                             placeholder="Enter your password"
                             className="w-full bg-[#F3F3F3] border-none rounded-md p-5 focus:outline-none placeholder:text-[#9F9F9F]"
@@ -67,6 +84,7 @@ const Register = () => {
                     {/* Terms & Conditions Checkbox */}
                     <div className="flex items-center gap-3 mb-8">
                         <input
+                            required
                             type="checkbox"
                             className="w-5 h-5 accent-[#403F3F] border-[#CCCCCC] rounded"
                         />
@@ -84,7 +102,7 @@ const Register = () => {
                     {/* Register Action Button */}
                     <div className="mt-8">
                         <button
-                            type="button"
+                            type="submit"
                             className="w-full bg-[#403F3F] text-white py-4 text-xl font-semibold rounded-md hover:bg-[#333232] transition-colors"
                         >
                             Register
