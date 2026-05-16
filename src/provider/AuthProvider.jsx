@@ -6,9 +6,12 @@ export const AuthContext = createContext();
 const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    console.log(user);
+    // 5. to fixed even user login it redicrect to login page.
+    const [loading, setLoading] = useState(true);
+    console.log(loading, user);
     // 2. to create user
     const createUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
@@ -19,6 +22,7 @@ const AuthProvider = ({ children }) => {
 
     // 4. to singin
     const signInUser = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
@@ -26,6 +30,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
+            setLoading(false);
         });
         return () => {
             unsubscribe();
@@ -37,7 +42,9 @@ const AuthProvider = ({ children }) => {
         setUser,
         createUser,
         logOut,
-        signInUser
+        signInUser,
+        loading,
+        setLoading
     };
     return <AuthContext value={authData}>{children}</AuthContext>
 };
