@@ -8,7 +8,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     // 5. to fixed even user login it redicrect to login page.
     const [loading, setLoading] = useState(true);
-    console.log(loading, user);
+    // console.log(loading, user);
     // 2. to create user
     const createUser = (email, password) => {
         setLoading(true)
