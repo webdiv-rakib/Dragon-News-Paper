@@ -1,14 +1,15 @@
 import React, { use, useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Register = () => {
-    const { createUser, setUser } = use(AuthContext)
-    const [passwordError, setPasswordError] = useState('')
+    const { createUser, setUser, updateUser } = use(AuthContext)
+    const [passwordError, setPasswordError] = useState('');
+    const navigate = useNavigate()
     const handleRegister = (e) => {
         e.preventDefault();
-        // const name = e.target.name.value;
-        // const photo_url = e.target.photo.value;
+        const name = e.target.name.value;
+        const photo_url = e.target.photo.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
         if (password.length < 5) {
@@ -21,7 +22,15 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user;
-                setUser(user);
+                updateUser({ displayName: name, photoURL: photo_url })
+                    .then(() => {
+                        setUser({ ...user, displayName: name, photoURL: photo_url });
+                        navigate('/')
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        setUser(user)
+                    })
             })
             .catch(error => {
                 console.log(error.message)

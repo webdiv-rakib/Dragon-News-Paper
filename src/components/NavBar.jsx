@@ -22,7 +22,7 @@ const NavBar = () => {
         <div className='flex justify-between items-center'>
             <div className=''>
                 {
-                    user && user.email
+                    user && user.displayName
                 }
             </div>
             <div className='nav flex gap-5 font-semibold text-accent'>
@@ -31,7 +31,7 @@ const NavBar = () => {
                 }
             </div>
             <div className='login-btn flex items-center gap-3'>
-                <img className='rounded-full' src={userIcon} alt="" />
+                <img className='rounded-full' src={`${user ? user.photoURL : userIcon}`} alt="" />
                 {
                     user ? (<button onClick={handleLogout} className='btn btn-primary rounded-none px-10'>Logout</button>) : (<Link to='/auth/login' className='btn btn-primary rounded-none px-10'>Login</Link>)
                 }
