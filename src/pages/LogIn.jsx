@@ -1,9 +1,12 @@
-import React, { use } from 'react';
-import { Link } from 'react-router';
+import React, { use, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 
 const LogIn = () => {
     const { signInUser } = use(AuthContext)
+    const [error, setError] = useState('')
+    const location = useLocation()
+    const navigate = useNavigate()
     const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -13,11 +16,13 @@ const LogIn = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                navigate(`${location.state ? location.state : '/'}`)
             })
             .catch(error => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
-                alert(errorCode, errorMessage)
+                // const errorMessage = error.message;
+                // alert(errorCode, errorMessage)
+                setError(errorCode)
             })
     }
     return (
@@ -64,6 +69,9 @@ const LogIn = () => {
 
                     {/* Login Action */}
                     <div className="mt-8">
+                        <div>
+                            {error && <p className='text-red-500'>{error}</p>}
+                        </div>
                         <button
                             type="submit"
                             className="w-full bg-[#403F3F] text-white py-4 text-xl font-semibold rounded-md hover:bg-[#333232] transition-colors"

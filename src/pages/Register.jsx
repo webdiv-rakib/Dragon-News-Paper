@@ -1,15 +1,23 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Register = () => {
     const { createUser, setUser } = use(AuthContext)
+    const [passwordError, setPasswordError] = useState('')
     const handleRegister = (e) => {
         e.preventDefault();
         // const name = e.target.name.value;
         // const photo_url = e.target.photo.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
+        if (password.length < 5) {
+            setPasswordError('Password Should be more than 6 charecter')
+            return
+        }
+        else {
+            setPasswordError('')
+        }
         createUser(email, password)
             .then(result => {
                 const user = result.user;
@@ -100,6 +108,9 @@ const Register = () => {
                         <label className="text-lg font-normal text-[#706F6F]">
                             Accept <span className="font-semibold">Term & Conditions</span>
                         </label>
+                    </div>
+                    <div>
+                        {passwordError && <p>{passwordError}</p>}
                     </div>
                     <p className="text-center mt-8 font-semibold text-[#706F6F]">
                         Already Have An Account ?{" "}
