@@ -1,12 +1,13 @@
-import React, { use, useState } from 'react';
+import React, { use, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 
 const LogIn = () => {
-    const { signInUser } = use(AuthContext)
+    const { signInUser, passwordReset } = use(AuthContext)
     const [error, setError] = useState('')
-    const location = useLocation()
-    const navigate = useNavigate()
+    const location = useLocation();
+    const navigate = useNavigate();
+    const emailRef = useRef()
     const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -24,6 +25,21 @@ const LogIn = () => {
                 // alert(errorCode, errorMessage)
                 setError(errorCode)
             })
+    }
+
+    const handleResetPassword = () => {
+        const email = emailRef.current?.value;
+        passwordReset(email)
+            .then(() => {
+                // Password reset email sent!
+                // ..
+                alert('Reset email send')
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+            });
     }
     return (
         <div className="pt-10 flex justify-center items-center bg-[#F3F3F3] font-poppins">
@@ -45,6 +61,7 @@ const LogIn = () => {
                             Email address
                         </label>
                         <input
+                            ref={emailRef}
                             required
                             type="email"
                             name='email'
@@ -65,6 +82,9 @@ const LogIn = () => {
                             placeholder="Enter your password"
                             className="w-full bg-[#F3F3F3] border-none rounded-md p-5 focus:outline-none placeholder:text-[#9F9F9F]"
                         />
+                    </div>
+                    <div className="mb-2 text-right">
+                        <a onClick={handleResetPassword} href="#" className="text-sm text-gray-400 hover:text-indigo-500">Forgot Password?</a>
                     </div>
 
                     {/* Login Action */}
