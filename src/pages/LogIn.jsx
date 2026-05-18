@@ -27,6 +27,7 @@ const LogIn = () => {
             })
     }
 
+    //handle reset password
     const handleResetPassword = () => {
         const email = emailRef.current?.value;
         passwordReset(email)
